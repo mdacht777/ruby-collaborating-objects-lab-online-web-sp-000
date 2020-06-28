@@ -13,11 +13,8 @@ class Song
   end
   def self.artist_name
       # binding.pry
-      if self.artist.nil?
-        nil
-      else
-      self.artist.name
-    end
+    self.artist = Artist.find_or_create_by_name(name)
+    artist.add_song(self)
   end
   def self.new_by_filename(file)
     file = file.chomp(".mp3").split(" - ")
